@@ -1,0 +1,275 @@
+<style>
+  .flex-container {
+    display: flex;
+    flex-wrap: wrap;
+    flex-direction: column-reverse;
+  }
+
+</style>
+
+<!-- <div class="row" *ngFor="let item of metricChartArray;let i=index;">
+  <div class="col-md-3">
+    <div echarts [options]="item" style="height: 40vh"></div>
+  </div>
+
+
+</div> -->
+
+<mat-card [ngClass]="{ modal: fullScreen }">
+  <div #pngRef>
+    <mat-card-header class="d-flex justify-content-between align-items-center">
+      <!-- <mat-card-subtitle *ngIf="isTooltip">{{
+      chartOptions.mytitle.subtitle
+    }}
+      </mat-card-subtitle> -->
+      <span class="chart-card-heading mx-4">
+        <strong>{{ chartOptions.mytitle.text }}</strong>
+        <sup>
+          <button *ngIf="!fullScreen" style="width: auto; height: auto;" [matTooltipDisabled]="isTooltip"
+            [matTooltip]="chartOptions.mytitle.subtitle" mat-icon-button matTooltipClass="chart-tooltip">
+            <i class="material-icons" style="display:block;font-size: 14px;">
+              info
+            </i>
+          </button>
+        </sup>
+      </span>
+      <div data-html2canvas-ignore="true">
+        <div style="cursor:pointer;">
+          <div style="display: flex;opacity: 0.6;font-size:9pt;">
+            <button style="width: auto; height: auto;" *ngIf="!fullScreen" (click)="fullScreen = true" mat-icon-button
+              aria-label="Example icon-button with a menu">
+              <i class="material-icons" style="display:block;">
+                fullscreen
+              </i>
+            </button>
+            <button style="width: auto; height: auto;" *ngIf="fullScreen" (click)="fullScreen = false" mat-icon-button
+              aria-label="Example icon-button with a menu">
+              <i class="material-icons" style="display:block;">
+                fullscreen_exit
+              </i>
+            </button>
+            <button style="width: auto; height: auto;" mat-icon-button [matMenuTriggerFor]="menu"
+              aria-label="Example icon-button with a menu">
+              <i class="material-icons" style="display:block;">
+                more_vert
+              </i>
+            </button>
+          </div>
+          <mat-menu #menu="matMenu">
+            <button mat-menu-item [matMenuTriggerFor]="export">
+              <span>Export</span>
+            </button>
+            <mat-divider></mat-divider>
+            <!-- <button mat-menu-item [matMenuTriggerFor]="Resolution" *ngIf="!isMobile">
+              <span>Screen Occupancy</span>
+            </button> -->
+            <!-- <mat-divider></mat-divider>
+            <button mat-menu-item [matMenuTriggerFor]="chartTheme">
+              <span>Theme</span>
+            </button> -->
+            <!-- <div *ngIf="chartOptions.series">
+              <mat-divider *ngIf="chartOptions.series.length > 1"></mat-divider>
+              <button mat-menu-item *ngIf="chartOptions.series.length > 1">
+                <mat-checkbox class="example-margin" (change)="stack($event)">Stack</mat-checkbox>
+              </button>
+            </div> -->
+            <mat-divider></mat-divider>
+            <button mat-menu-item (click)="reset()">
+              <span>Reset</span>
+            </button>
+          </mat-menu>
+          <mat-menu #Resolution>
+            <button mat-menu-item (click)="screenOccupancy(4)">
+              <mat-icon></mat-icon>
+              <span>4</span>
+            </button>
+            <mat-divider></mat-divider>
+            <button mat-menu-item (click)="screenOccupancy(6)">
+              <mat-icon></mat-icon>
+              <span>6</span>
+            </button>
+            <mat-divider></mat-divider>
+            <button mat-menu-item (click)="screenOccupancy(8)">
+              <mat-icon></mat-icon>
+              <span>8</span>
+            </button>
+            <mat-divider></mat-divider>
+            <button mat-menu-item (click)="screenOccupancy(12)">
+              <mat-icon></mat-icon>
+              <span>12</span>
+            </button>
+          </mat-menu>
+          <mat-menu #export>
+            <button mat-menu-item (click)="exportExcel()">
+              <mat-icon>table_chart</mat-icon>
+              <span>Export Excel</span>
+            </button>
+            <mat-divider></mat-divider>
+            <button mat-menu-item (click)="exportPdf()">
+              <mat-icon>picture_as_pdf</mat-icon>
+              <span>Export PDF</span>
+            </button>
+            <button mat-menu-item (click)="exportPng()">
+              <mat-icon>image</mat-icon>
+              <span>Export PNG</span>
+            </button>
+          </mat-menu>
+          <!-- <mat-menu #chartTheme>
+            <button mat-menu-item (click)="theme = 'vintage'">
+              <mat-icon></mat-icon>
+              <span>vintage</span>
+            </button>
+            <mat-divider></mat-divider>
+            <button mat-menu-item (click)="theme = 'macarons'">
+              <mat-icon></mat-icon>
+              <span>macarons</span>
+            </button>
+            <mat-divider></mat-divider>
+            <button mat-menu-item (click)="theme = 'dark'">
+              <mat-icon></mat-icon>
+              <span>dark</span>
+            </button>
+            <mat-divider></mat-divider>
+            <button mat-menu-item (click)="theme = 'infographic'">
+              <mat-icon></mat-icon>
+              <span>infographic</span>
+            </button>
+            <mat-divider></mat-divider>
+            <button mat-menu-item (click)="theme = 'shine'">
+              <mat-icon></mat-icon>
+              <span>shine</span>
+            </button>
+            <mat-divider></mat-divider>
+            <button mat-menu-item (click)="theme = 'roma'">
+              <mat-icon></mat-icon>
+              <span>roma</span>
+            </button>
+          </mat-menu> -->
+        </div>
+      </div>
+    </mat-card-header>
+    <div #doughnutElement>
+      <div class="row">
+        <div class="col-md-3">
+          <div echarts [options]="metricChartArray[0]" style="height: 40vh"></div>
+        </div>
+        <div class="col-md-3">
+          <div echarts [options]="metricChartArray[1]" style="height: 40vh"></div>
+        </div>
+        <div class="col-md-3">
+          <div echarts [options]="metricChartArray[2]" style="height: 40vh"></div>
+        </div>
+
+      </div>
+      <div class="row" style="margin-left:1%;" *ngIf="!chartOptions.showOnlyDoughnut">
+        <div class="col-md-5">
+          <div class="card">
+            <div class="card-body" style="background-color: #fff;border:1px solid black;">
+              <div class="row">
+                <div class="col-md-12">
+                  <h6>Notifications Emails Delivered
+                  </h6>
+                </div>
+
+              </div>
+              <div class="row">
+                <div class="col-md-10">
+                  <div class="alert alert-primary" role="alert"
+                    style="background-color: rgb(239, 176, 41);color:white;">
+                    Daily
+                  </div>
+                </div>
+                <div class="col-md-2">
+                  <span class="text-muted">{{chartOptions.series[0].data[0]["dailydigest"]}}</span>
+                </div>
+
+              </div>
+              <div class="row">
+                <div class="col-md-10">
+                  <div class="alert alert-primary" role="alert"
+                    style="background-color: rgb(146, 208, 80);color:white;">
+                    Weekly
+                  </div>
+                </div>
+                <div class="col-md-2">
+                  <span class="text-muted">{{chartOptions.series[0].data[0]["weeklydigest"]}}</span>
+                </div>
+
+              </div>
+              <div class="row">
+                <div class="col-md-10">
+                  <div class="alert alert-primary" role="alert" style="background-color: rgb(0, 176, 240);color:white;">
+                    Instant
+                  </div>
+                </div>
+                <div class="col-md-2">
+                  <span class="text-muted">{{chartOptions.series[0].data[0]["instantemail"]}}</span>
+                </div>
+
+              </div>
+
+            </div>
+          </div>
+        </div>
+        <div class="col-md-5">
+          <div class="card">
+            <div class="card-body" style="background-color: #fff;border:1px solid black;">
+              <div class="row">
+                <div class="col-md-12">
+                  <h6>Total Activity
+                  </h6>
+                </div>
+
+              </div>
+              <div class="row">
+                <div class="col-md-10">
+                  <div class="alert alert-primary" role="alert"
+                    style="background-color: rgb(239, 176, 41);color:white;">
+                    Posts, Comments, Replies, Likes
+                  </div>
+                </div>
+                <div class="col-md-2">
+                  <span class="text-muted">{{chartOptions.series[0].data[0]["postsCommentsRepliesLikes"]}}</span>
+                </div>
+
+              </div>
+              <div class="row">
+                <div class="col-md-10">
+                  <div class="alert alert-primary" role="alert"
+                    style="background-color: rgb(146, 208, 80);color:white;">
+                    @Mentions
+                  </div>
+                </div>
+                <div class="col-md-2">
+                  <span class="text-muted">{{chartOptions.series[0].data[0]["mentions"]}}</span>
+                </div>
+
+              </div>
+              <div class="row">
+                <div class="col-md-10">
+                  <div class="alert alert-primary" role="alert" style="background-color: rgb(0, 176, 240);color:white;">
+                    Member initiated Follows
+                  </div>
+                </div>
+                <div class="col-md-2">
+                  <span class="text-muted">{{chartOptions.series[0].data[0]["follows"]}}</span>
+                </div>
+
+              </div>
+
+            </div>
+          </div>
+        </div>
+
+      </div>
+      <div id="download">
+        <img #canvas />
+        <a #downloadLink></a>
+      </div>
+    </div>
+
+
+
+  </div>
+
+</mat-card>

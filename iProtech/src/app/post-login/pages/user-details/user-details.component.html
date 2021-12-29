@@ -1,0 +1,31 @@
+<mat-card class="w-100" *ngIf="user">
+  <h3>Welcome {{user.name}}</h3>
+  <div class="user-basic-info">
+    <span>
+      Name:{{user.name}}
+    </span>
+    <span>
+      User Name:{{user.username}}
+    </span>
+  </div><br>
+  <div class="user-basic-info">
+    <div>
+      <mat-icon>email</mat-icon>E-mail:{{user.email}}
+    </div>
+    <div>
+      <mat-icon>location_on</mat-icon>Location:{{user.address.city}}
+    </div>
+  </div>
+  <br>
+
+  <br>
+  <div class="user-basic-info">
+    <div>
+      <mat-icon>call</mat-icon>Call:{{user.phone}}
+    </div>
+    <div>
+      <mat-icon>language</mat-icon>website:{{user.website}}
+    </div>
+  </div>
+
+</mat-card>

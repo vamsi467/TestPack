@@ -1,0 +1,10 @@
+<ted-bar-line-chart *ngIf="(chartOptions.chartType ==='line' || chartOptions.chartType ==='bar') && chartOptions.series[0].data"
+  [chartOptions]="chartOptions" (occupancy)="screenOccupancy($event)" [index]="index">
+</ted-bar-line-chart>
+<ted-table-chart *ngIf="(chartOptions.chartType ==='table') && chartOptions.series[0].data" 
+  [chartOptions]="chartOptions" >
+</ted-table-chart>
+<ted-pie-dougnut-chart *ngIf="(chartOptions.chartType ==='pie' || chartOptions.chartType === 'donut') && chartOptions.series[0].data"
+  (screenSize)="changeScreenSize($event)" [chartOptions]="chartOptions"></ted-pie-dougnut-chart>
+<ted-multi-chart *ngIf="(chartOptions.chartType ==='multi') && chartOptions.series[0].data" 
+  [chartOptions]="chartOptions"></ted-multi-chart>

@@ -1,0 +1,77 @@
+<div>
+  <div class="px-4 mx-4 mt-4">
+    <h5 class="row">Data Feed Resource Registry</h5>
+  </div>
+  <div class="p-4 m-4 bg-white">
+    <form class="w-50 " [formGroup]="registrationForm" (submit)="submit(registrationForm.value)">
+
+
+      <div class="row">
+        <mat-form-field class="col-md-12 px-4  col-sm-12">
+          <input matInput placeholder="Data Feed Name " formControlName="dataFeedName">
+
+        </mat-form-field>
+        <mat-form-field class="col-md-12 px-4  col-sm-12">
+          <textarea matInput placeholder="Data Feed Description" formControlName="dataFeedDesc"></textarea>
+
+        </mat-form-field>
+        <mat-form-field class="col-md-12 px-4  col-sm-12">
+          <mat-label>Data Feed Type</mat-label>
+          <mat-select formControlName="dataFeedType">
+            <mat-option *ngFor="let item of feedType" [value]="item">
+              {{ item}}
+            </mat-option>
+          </mat-select>
+
+        </mat-form-field>
+        <mat-form-field class="col-md-12 px-4  col-sm-12">
+          <input matInput placeholder="Data Feed Priority" formControlName="dataFeedPriority">
+          <mat-label>Data Feed Priority</mat-label>
+          <mat-select formControlName="dataFeedPriority">
+            <mat-option *ngFor="let item of feedpriority" [value]="item">
+              {{ item}}
+            </mat-option>
+          </mat-select>
+        </mat-form-field>
+        <mat-form-field class="col-md-12 px-4  col-sm-12">
+          <input matInput placeholder="Data Feed Availability Description " formControlName="dataFeedAvailabilityDS">
+
+        </mat-form-field>
+
+        <mat-form-field class="col-md-12 px-4  col-sm-12">
+          <mat-label>Data Feed Ing Cons Indicator</mat-label>
+          <mat-select formControlName="dataFeedIngConsInd">
+            <mat-option *ngFor="let item of ingConsInd" [value]="item">
+              {{ item}}
+            </mat-option>
+          </mat-select>
+
+        </mat-form-field>
+
+
+        <mat-form-field class="col-md-12 px-4  col-sm-12">
+          <input matInput placeholder="Data Feed Sor App DS " formControlName="dataFeedSorAppDS">
+          <!-- <mat-label>Data Feed SOR App Description</mat-label>
+      <mat-select formControlName="dataFeedSorAppDS">
+        <mat-option *ngFor="let item of sorAppDS" [value]="item">
+          {{ item}}
+        </mat-option>
+      </mat-select> -->
+
+        </mat-form-field>
+        <mat-form-field class="col-md-12 px-4  col-sm-12">
+          <input matInput placeholder="Data Feed Status Indicator" formControlName="dataFeedStatusInd">
+          <mat-label>Data Feed Status Indicator</mat-label>
+          <mat-select formControlName="dataFeedStatusInd">
+            <mat-option *ngFor="let item of statusInd" [value]="item">
+              {{ item}}
+            </mat-option>
+          </mat-select>
+        </mat-form-field>
+      </div>
+
+      <button [disabled]="!registrationForm.valid" type="submit" mat-raised-button color="primary"
+        class="text-white mx-5">Submit</button>
+    </form>
+  </div>
+</div>

@@ -1,0 +1,27 @@
+<app-page-header class="d-flex flex-column">
+</app-page-header>
+<mat-sidenav-container class="d-flex flex-column example-container bg-ted-light-grey" color="primary" autosize>
+  <mat-sidenav [mode]="sideNavMode" [opened]="sideNavOpen">
+    <mat-nav-list>
+      <mat-list-item routerLinkActive="active" [routerLink]="['/users']">
+        <mat-icon>rate_review</mat-icon>
+        <span *ngIf="changeText" class="mx-2">Users</span>
+      </mat-list-item>
+      <mat-divider></mat-divider>
+      <mat-list-item routerLinkActive="active" [routerLink]="['/carousel']">
+        <mat-icon>visibility</mat-icon>
+        <span *ngIf="changeText" class="mx-2">Carousel</span>
+      </mat-list-item>
+      <mat-divider></mat-divider>
+      <mat-list-item routerLinkActive="active" [routerLink]="['']">
+        <mat-icon>person</mat-icon>
+        <span *ngIf="changeText" class="mx-2">Log Out</span>
+      </mat-list-item>
+      <mat-divider></mat-divider>
+    </mat-nav-list>
+
+  </mat-sidenav>
+  <mat-sidenav-content class="bg-ted-light-grey">
+    <router-outlet></router-outlet>
+  </mat-sidenav-content>
+</mat-sidenav-container>

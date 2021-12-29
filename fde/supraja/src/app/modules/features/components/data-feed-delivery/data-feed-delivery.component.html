@@ -1,0 +1,35 @@
+<div>
+
+<div class="px-4 mx-4 mt-4">
+  <h5 class="row">Data Feed Resource Registry</h5>
+</div>
+<div class="p-4 m-4 bg-white">
+  <form class="w-100 " [formGroup]="deliveryForm" (submit)="submit(deliveryForm.value)">
+    <div class="row">
+      <mat-form-field class="col-md-4 px-4  col-sm-12">
+        <input matInput placeholder="Data Feed Name " formControlName="data_Feed_Name">
+      </mat-form-field>
+    
+      <mat-form-field class="col-md-4 px-4  col-sm-12">
+        <mat-label>Data Delivery Chanl Type Code</mat-label>
+        <mat-select formControlName="data_Dlvry_Chnl_Typ_Cd">
+          <mat-option *ngFor="let item of deliveryType" [value]="item">
+            {{ item}}
+          </mat-option>
+        </mat-select>
+      </mat-form-field>
+      <mat-form-field class="col-md-4 px-4  col-sm-12">
+        <input matInput placeholder="Data Delivery Chanl Type Name" formControlName="data_Dlvry_Chnl_Typ_Nm">
+      </mat-form-field>
+   
+      <mat-form-field class="col-md-4 px-4  col-sm-12">
+        <textarea matInput placeholder="Delivery Owner Description" formControlName="data_Dlvry_Owner_Ds"></textarea>
+      </mat-form-field>
+    </div>
+  
+    <button [disabled]="!deliveryForm.valid" type="submit" mat-raised-button color="primary"
+      class="text-white mx-5">Submit</button>
+  </form>
+</div>
+
+</div>

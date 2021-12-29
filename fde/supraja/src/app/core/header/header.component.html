@@ -1,0 +1,42 @@
+<div class="header bg-primary text-white d-flex justify-content-between align-items-center w-100 p-0">
+  <div class="d-flex justify-content-start align-items-center h-100">
+    <mat-icon class="ml-2" (click)="sideNavEmit()">menu</mat-icon>
+    <a class="" [routerLink]="['/AllEstimates']">
+      <img class="p-2 logo" height="60" src="assets/images/fdelogo.png" />
+
+      <!-- <img class="mdc-image-list__image" width="200" src="assets/images/fdelogo.png" /> -->
+
+
+    </a>
+    <h4>FDE BIDW AUDIT FRAMEWORK</h4>
+  </div>
+  <div class="d-flex justify-content-end" style="align-items: center;">
+    <!-- <mat-icon *ngIf="!fullScreen" (click)="fullscreen()">fullscreen</mat-icon>
+    <mat-icon *ngIf="fullScreen" (click)="exitFullscreen()">fullscreen_exit
+    </mat-icon> -->
+    <div [matMenuTriggerFor]="menu" class="d-flex align-items-center pointer" style="cursor: pointer;">
+      <!-- <img
+        *ngIf="!currentUser.pic"
+        class="rounded-circle"
+        src="assets/img/profile-img.png"
+        height="50"
+        width="50"
+      /> -->
+      <!-- <img
+        *ngIf="currentUser.pic"
+        class="rounded-circle"
+        [src]="currentUser.pic"
+        height="50"
+        width="50"
+      /> -->
+      <span *ngIf="currentUser">{{
+        
+          currentUser.username | titlecase
+      }}</span>
+      <i class="material-icons">arrow_drop_down</i>
+    </div>
+    <mat-menu #menu="matMenu">
+      <a mat-menu-item style="cursor:pointer;" (click)="logout()">Log Out</a>
+    </mat-menu>
+  </div>
+</div>

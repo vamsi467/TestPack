@@ -1,0 +1,269 @@
+@import url("https://fonts.googleapis.com/icon?family=Material+Icons");
+@import url("https://fonts.googleapis.com/css?family=Roboto:300,400,500,700&display=swap");
+@import "@angular/material/prebuilt-themes/deeppurple-amber.css";
+
+
+/**
+* Generated theme by Material Theme Generator
+* https://material-theme-generator.travetto.io
+*/
+
+@import '~@angular/material/theming';
+// Include the common styles for Angular Material. We include this here so that you only
+// have to load a single css file for Angular Material in your app.
+
+// Fonts
+@import url('https://fonts.googleapis.com/css?family=Roboto:300,400,500');
+@import '~@angular/material/theming';
+
+// Include non-theme styles for core.
+@include mat-core();
+
+// Define your application's custom theme.
+$primary: mat-palette($mat-indigo);
+$accent: mat-palette($mat-pink, A200, A100, A400);
+$theme: mat-light-theme($primary, $accent);
+
+$theme-info: mat-palette($mat-blue);
+$theme-success: mat-palette($mat-green);
+$theme-warning: mat-palette($mat-yellow);
+$theme-error: mat-palette($mat-red);
+$theme-pending:mat-palette($mat-deep-orange);
+$theme-inprogress:mat-palette($mat-blue);
+$theme-draft:mat-palette($mat-yellow);
+$theme-completed:mat-palette($mat-green);
+// Specific component overrides, pieces that are not in line with the general theming
+
+@mixin snackbar-theme($theme-info,
+  $theme-success,
+  $theme-warning,
+  $theme-error) {
+  .mat-snack-bar-container {
+    // background-color: #ffffff !important;
+    border-color: #c3e6cb !important;
+    margin-top: 45vh !important;
+  }
+
+  .success-snackbar,
+  .info-snackbar,
+  .warning-snackbar,
+  .error-snackbar {
+    border-left: 4px solid !important;
+
+    &::before {
+      font-family: "Material Icons";
+      float: left;
+      font-size: 24px;
+      white-space: pre;
+    }
+  }
+
+  .success-snackbar {
+    border-left-color: mat-color($theme-success, 400);
+
+    &::before {
+      content: "\e86c  ";
+      color: mat-color($theme-success, 400) !important;
+    }
+  }
+
+  .success-snackbar * {
+    color: mat-color($theme-success, 400) !important;
+  }
+
+  .info-snackbar {
+    border-left-color: mat-color($theme-info, 400);
+
+    &::before {
+      content: "\e88e  ";
+      color: mat-color($theme-info, 400);
+    }
+  }
+
+  .info-snackbar * {
+    color: mat-color($theme-info, 400) !important;
+  }
+
+  .warning-snackbar {
+    border-left-color: mat-color($theme-warning, 400);
+
+    &::before {
+      color: mat-color($theme-warning, 400);
+    }
+  }
+
+  .warning-snackbar * {
+    color: mat-color($theme-warning, 400) !important;
+  }
+
+  .error-snackbar {
+    border-left-color: mat-color($theme-error, 400);
+
+    &::before {
+      color: mat-color($theme-error, 400);
+    }
+  }
+
+  .error-snackbar * {
+    color: mat-color($theme-error, 400) !important;
+  }
+
+  .warning-snackbar::before {
+    content: "\e002  ";
+  }
+
+  .error-snackbar::before {
+    content: "\e000  ";
+  }
+}
+
+@mixin custom-components-theme($theme-info,
+  $theme-success,
+  $theme-warning,
+  $theme-error,
+  $theme-completed,
+  $theme-inprogress,
+  $theme-pending,
+  $theme-draft) {
+
+  @include snackbar-theme($theme-info,
+    $theme-success,
+    $theme-warning,
+    $theme-error);
+}
+
+.theme {
+  @include angular-material-theme($theme);
+  @include snackbar-theme($theme-info,
+    $theme-success,
+    $theme-warning,
+    $theme-error);
+  // @include sidenav-component-theme($theme);
+}
+
+@include mat-core();
+
+
+
+/*   utilities   */
+
+
+// Width
+.ws-100 {
+  width: 100vw;
+}
+
+// height
+
+.hs-100 {
+  height: 100vh;
+}
+
+
+
+
+
+
+/* components */
+app-header-component .header {
+  height: 50px;
+}
+
+app-footer-component,
+.footer {
+  height: 30px;
+}
+
+.bg-primary {
+  background-color: #3f51b5 !important;
+}
+
+.mat-sidenav-content,
+.mat-sidenav-container,
+.mat-sidenav,
+.content {
+  overflow-y: auto !important;
+  overflow-x: hidden !important;
+  height: calc(100vh - 80px) !important;
+}
+
+.mat-nav-list .active {
+  color: #3f51b5 !important;
+}
+
+.begin-date {
+
+  /* Chrome, Safari, Edge, Opera */
+  input::-webkit-outer-spin-button,
+  input::-webkit-inner-spin-button {
+    -webkit-appearance: none;
+    margin: 0;
+  }
+
+  /* Firefox */
+  input[type=number] {
+    -moz-appearance: textfield;
+  }
+
+  input::-webkit-calendar-picker-indicator {
+    display: none;
+    -webkit-appearance: none;
+  }
+}
+.dropdown-calender-start {
+  .mat-calendar-header {
+    background: #3f51b5 !important;
+    color: white;
+  }
+
+  .mat-calendar-body tr:first-child {
+    display: none;
+  }
+
+  .mat-calendar-controls {
+    justify-content: space-between !important;
+  }
+
+  .mat-calendar-table-header tr:last-child {
+    display: none;
+  }
+
+  .mat-calendar-period-button {
+    order: 2;
+    .mat-calendar-arrow{
+      border-top-color: white !important;
+    }
+  }
+
+  .mat-calendar-previous-button {
+    order: 1;
+    color: white !important;
+  }
+
+  .mat-calendar-next-button {
+    order: 3;
+    color: white !important;
+  }
+
+  .mat-calendar-spacer {
+    display: none;
+  }
+
+  .mat-calendar-header::before {
+    content: 'Start date';
+    font: bold 25px/28px 'Roboto';
+    display: flex;
+    text-align: center;
+    justify-content: center;
+  }
+
+  .mat-calendar-controls {
+    margin: 3% calc(33% / 7 - 16px) !important;
+  }
+}
+.material-icons {
+  font-size: 20px !important;
+  width: 20px !important;
+  height: 20px !important;
+  font-family: "Material Icons" !important;
+}

@@ -1,0 +1,9 @@
+// you can write to stdout for debugging purposes, e.g.
+// console.log('this is a debug message');
+
+function solution(message, K) {
+    // write your code in JavaScript (Node.js 8.9.4)
+    if(K<0) return "";
+    reg = new RegExp(`^.{0,${K-1}}[^ ](?= |$)`);
+    return (message.match(reg)||[''])[0]
+}

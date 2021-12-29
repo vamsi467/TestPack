@@ -1,0 +1,46 @@
+.full-width-table {
+    width: 100%;
+}
+
+.hs-30 {
+    height: 28vh;
+}
+
+.cam-invoice-title {
+    color: #3e3c3c;
+    font-family: Poppins;
+    font-size: 22px;
+    font-weight: bold;
+    letter-spacing: 0;
+    line-height: 33px;
+}
+
+.text-as-primary {
+    color: #00c766 !important;
+}
+
+.text-as-warn {
+    color: #ff6f6f !important;
+}
+
+.indicator {
+    padding-top: 4px;
+    color: #ff6f6f !important;
+    font-size: 12px;
+    width: 16px;
+    height: 12px;
+}
+
+.aligned-with-icon {
+    position: relative;
+    top: -5px;
+    margin-left: 5px;
+}
+
+.amount-space {
+    padding-left: 16px;
+}
+
+.pointer {
+    cursor: pointer;
+}

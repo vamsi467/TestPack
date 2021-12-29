@@ -1,0 +1,27 @@
+<app-header-component></app-header-component>
+<mat-sidenav-container class="d-flex flex-column example-container" color="primary" autosize>
+  <mat-sidenav [ngStyle]="{ 'width.em': sidenavWidth }" (mouseenter)="increase()" (mouseleave)="decrease()"
+    [mode]="sideNavMode" [opened]="sideNavOpen">
+    <mat-nav-list>
+      <mat-list-item routerLinkActive="active" [routerLink]="['/registration']">
+        <mat-icon>rate_review</mat-icon>
+        <span *ngIf="changeText" class="mx-2">Data Feed Registration</span>
+      </mat-list-item>
+      <mat-divider></mat-divider>
+      <mat-list-item routerLinkActive="active" [routerLink]="['/delivery']">
+        <mat-icon>rate_review</mat-icon>
+        <span *ngIf="changeText" class="mx-2">Data Feed Delivery</span>
+      </mat-list-item>
+      <mat-divider></mat-divider>
+      <mat-list-item routerLinkActive="active" [routerLink]="['/resourceRegistry']">
+        <mat-icon>rate_review</mat-icon>
+        <span *ngIf="changeText" class="mx-2">Data Feed Resource Registry</span>
+      </mat-list-item>
+    </mat-nav-list>
+
+  </mat-sidenav>
+  <mat-sidenav-content>
+    <router-outlet></router-outlet>
+  </mat-sidenav-content>
+</mat-sidenav-container>
+<app-footer></app-footer>

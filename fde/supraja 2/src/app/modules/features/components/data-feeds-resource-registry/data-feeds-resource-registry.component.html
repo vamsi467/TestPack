@@ -1,0 +1,212 @@
+<div>
+  <div class="px-4 mx-4 mt-4">
+    <h5 class="row">Data Feed Resource Registry</h5>
+  </div>
+  <div class="p-4 m-4 bg-white">
+
+    <mat-radio-group [(ngModel)]="selectedRadio">
+      <mat-radio-button class="p-2" *ngFor="let option of radioOptions" [value]="option">
+        {{option}}
+      </mat-radio-button>
+    </mat-radio-group>
+    <form class="w-100 " [formGroup]="resourceForm" (submit)="submit(resourceForm.value)">
+      <div class="row">
+        <mat-form-field class="col-md-4 px-4  col-sm-12">
+          <input matInput placeholder="Data Feed Name " formControlName="data_Feed_Name">
+        </mat-form-field>
+
+        <mat-form-field class="col-md-4 px-4  col-sm-12">
+          <input matInput placeholder="Data Feed Res Base Name" formControlName="df_Res_Base_Name">
+        </mat-form-field>
+
+        <mat-form-field class="col-md-4 px-4  col-sm-12">
+          <input matInput placeholder="Data Feed Res Type" formControlName="df_Res_Type">
+        </mat-form-field>
+
+        <!-- <mat-form-field class="col-md-4 px-4  col-sm-12">
+          <input matInput placeholder="Data Feed Delivery Owner Ds" formControlName="data_Dlvry_Owner_Ds">
+        </mat-form-field> -->
+
+        <mat-form-field class="col-md-4 px-4  col-sm-12">
+          <input matInput placeholder="APP Region Id" formControlName="app_Region_Id">
+        </mat-form-field>
+
+        <mat-form-field class="col-md-4 px-4  col-sm-12">
+          <input matInput placeholder="APP Region Code" formControlName="app_Region_Cd">
+        </mat-form-field>
+
+        <mat-form-field class="col-md-4 px-4  col-sm-12">
+          <input matInput placeholder="Header Rec Id" formControlName="header_Rec_Id">
+        </mat-form-field>
+        <mat-form-field class="col-md-4 px-4  col-sm-12">
+          <input matInput placeholder="Trailer Rec Id" formControlName="trailer_Rec_Id">
+        </mat-form-field>
+
+        <mat-form-field class="col-md-4 px-4  col-sm-12">
+          <input matInput placeholder="Detail Rec Id" formControlName="detail_Rec_Id">
+        </mat-form-field>
+        <mat-form-field class="col-md-4 px-4  col-sm-12">
+          <input matInput placeholder="Res Type Category" formControlName="res_Type_Category">
+        </mat-form-field>
+
+        <!-- <mat-form-field class="col-md-4 px-4  col-sm-12">
+          <input matInput placeholder="Data Feed Name " formControlName="data_Dlvry_Chnl_Typ_Nm">
+        </mat-form-field> -->
+
+        <mat-form-field class="col-md-4 px-4  col-sm-12">
+          <input matInput placeholder="Delta Extract Fields" formControlName="delta_Extract_Fields">
+        </mat-form-field>
+
+        <mat-form-field class="col-md-4 px-4  col-sm-12">
+          <input matInput placeholder="Res Db Schema" formControlName="res_Db_Schema">
+        </mat-form-field>
+        <mat-form-field class="col-md-4 px-4  col-sm-12">
+          <input matInput placeholder="Res Db Details" formControlName="res_Db_Details">
+        </mat-form-field>
+
+        <mat-form-field class="col-md-4 px-4  col-sm-12">
+          <input matInput placeholder="Res Server Details" formControlName="res_Server_Details">
+        </mat-form-field>
+
+        <mat-form-field class="col-md-4 px-4  col-sm-12">
+          <input matInput placeholder="Res Server Details" formControlName="res_Load_Type">
+        </mat-form-field>
+
+        <mat-form-field class="col-md-4 px-4  col-sm-12">
+          <input matInput placeholder="Res Data Avail Freq" formControlName="res_Data_Avail_Freq">
+        </mat-form-field>
+        <!-- <mat-form-field class="col-md-4 px-4  col-sm-12">
+          <input matInput placeholder="Data Feed Name " formControlName="data_Dlvry_Chnl_Typ_Cd">
+        </mat-form-field> -->
+
+        <mat-form-field class="col-md-4 px-4  col-sm-12">
+          <input matInput placeholder="Res Load Frequency" formControlName="res_Load_Frequency">
+        </mat-form-field>
+
+        <mat-form-field class="col-md-4 px-4  col-sm-12">
+          <input matInput placeholder="Field Delimeter" formControlName="field_Delimeter">
+        </mat-form-field>
+
+        <mat-form-field class="col-md-4 px-4  col-sm-12">
+          <input matInput placeholder="Record Delimeter" formControlName="record_Delimeter">
+        </mat-form-field>
+
+        <mat-form-field class="col-md-4 px-4  col-sm-12">
+          <input matInput placeholder="Data Retention Period" formControlName="data_Retention_Period">
+        </mat-form-field>
+
+        <mat-form-field class="col-md-4 px-4  col-sm-12">
+          <input matInput placeholder="Code Page" formControlName="code_Page">
+        </mat-form-field>
+        <div class="col-md-4 px-4 col-sm-12">
+          <mat-form-field class="begin-date w-100">
+            <input matInput type="datetime-local" placeholder="Begin Timestamp" formControlName="begin_Ts">
+            <mat-icon matSuffix (click)="picker.open()" >date_range</mat-icon>
+          </mat-form-field>
+          <mat-form-field class="invisible w-0">
+            <input matInput [matDatepicker]="picker">
+            <mat-datepicker-toggle matSuffix [for]="picker"></mat-datepicker-toggle>
+            <mat-datepicker panelClass="dropdown-calender-start" #picker></mat-datepicker>
+          </mat-form-field>
+        </div>
+
+        <!-- <mat-form-field class="col-md-4 px-4  col-sm-12">
+          
+          <input matInput placeholder="Begin Timestamp" formControlName="begin_Ts">
+        </mat-form-field> -->
+      </div>
+      <div *ngIf="selectedRadio==='Kafka'">
+        <h5 class="row">Kafka</h5>
+        <div class="row">
+          <mat-form-field class="col-md-4 px-4  col-sm-12">
+            <input matInput placeholder="Topic Name" formControlName="topic_Name">
+          </mat-form-field>
+
+          <mat-form-field class="col-md-4 px-4  col-sm-12">
+            <input matInput placeholder="Number Of Partitions" formControlName="no_Of_Partitions">
+          </mat-form-field>
+
+          <mat-form-field class="col-md-4 px-4  col-sm-12">
+            <input matInput placeholder="Producer App Details" formControlName="producer_App_Dtls">
+          </mat-form-field>
+        </div>
+        <div class="row">
+          <mat-form-field class="col-md-4 px-4  col-sm-12">
+            <input matInput placeholder="Number Of Consumers" formControlName="no_Of_Consumers">
+          </mat-form-field>
+
+          <mat-form-field class="col-md-4 px-4  col-sm-12">
+            <input matInput placeholder="Consumer Group Name" formControlName="consumer_Group_Nm">
+          </mat-form-field>
+        </div>
+        <div class="row">
+          <mat-form-field class="col-md-4 px-4  col-sm-12">
+            <input matInput placeholder="Data Feed Name " formControlName="kafka_Begin_Ts">
+          </mat-form-field>
+        </div>
+      </div>
+      <div *ngIf="selectedRadio==='MQ'">
+        <h5 class="row">MQ</h5>
+        <div class="row">
+          <mat-form-field class="col-md-4 px-4  col-sm-12">
+            <input matInput placeholder="Message Queue Name" formControlName="mq_Name">
+          </mat-form-field>
+
+          <mat-form-field class="col-md-4 px-4  col-sm-12">
+            <input matInput placeholder="Message Queue Descr" formControlName="mq_Descr">
+          </mat-form-field>
+        </div>
+        <div class="row">
+          <mat-form-field class="col-md-4 px-4  col-sm-12">
+            <input matInput placeholder="Queue Manager Channel Name" formControlName="queue_Manager_Chnl_Name">
+          </mat-form-field>
+
+          <mat-form-field class="col-md-4 px-4  col-sm-12">
+            <input matInput placeholder="Queue Manager Name" formControlName="queue_Manager_Name">
+          </mat-form-field>
+        </div>
+        <div class="row">
+          <mat-form-field class="col-md-4 px-4  col-sm-12">
+            <input matInput placeholder="Message Queue Begin Ts" formControlName="mq_Begin_Ts">
+          </mat-form-field>
+        </div>
+      </div>
+      <div *ngIf="selectedRadio==='API'">
+        <h5 class="row">API</h5>
+        <div class="row">
+          <mat-form-field class="col-md-4 px-4  col-sm-12">
+            <input matInput placeholder="API Begin Ts" formControlName="api_Begin_Ts">
+          </mat-form-field>
+
+          <mat-form-field class="col-md-4 px-4  col-sm-12">
+            <input matInput placeholder="API Header Parameters" formControlName="api_Header_Params">
+          </mat-form-field>
+        </div>
+        <div class="row">
+          <mat-form-field class="col-md-4 px-4  col-sm-12">
+            <input matInput placeholder="API Name " formControlName="api_Name">
+          </mat-form-field>
+
+          <mat-form-field class="col-md-4 px-4  col-sm-12">
+            <input matInput placeholder="API Path Parameters" formControlName="api_Path_Params">
+          </mat-form-field>
+        </div>
+        <div class="row">
+          <mat-form-field class="col-md-4 px-4  col-sm-12">
+            <input matInput placeholder="API Query Parameters" formControlName="api_Query_Params">
+          </mat-form-field>
+          <mat-form-field class="col-md-4 px-4  col-sm-12">
+            <input matInput placeholder="API Request Body Parameters" formControlName="api_Req_Body_Params">
+          </mat-form-field>
+        </div>
+        <div class="row">
+          <mat-form-field class="col-md-4 px-4  col-sm-12">
+            <input matInput placeholder="API URL" formControlName="api_URL">
+          </mat-form-field>
+        </div>
+      </div>
+      <button [disabled]="!resourceForm.valid" type="submit" mat-raised-button color="primary"
+        class="text-white mx-5">Submit</button>
+    </form>
+  </div>
+</div>
